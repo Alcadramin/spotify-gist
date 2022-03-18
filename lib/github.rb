@@ -1,1 +1,4 @@
-require 'octokit'
+require "octokit"
+
+module Github
+end
