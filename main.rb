@@ -1,3 +1,4 @@
-require_relative "lib/env.rb"
+require_relative "lib/spotify.rb"
+include Spotify
 
-config = Env.new
+tracks = Spotify.get_tracks
