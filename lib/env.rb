@@ -10,8 +10,8 @@ class Env
     @spotify_refresh_token = ENV["SPOTIFY_REFRESH_TOKEN"]
     @github_secret = ENV["GITHUB_SECRET"]
     @gist_id = ENV["GIST_ID"]
-    @length = ENV["LENGTH"] || 20
-    @time = ENV["TIME"] || "short_term"
+    @length = ENV["LENGTH"].empty? ? 20 : ENV["LENGTH"]
+    @time = ENV["TIME"].empty? ? "short_term" : ENV["TIME"]
   end
 
   def get_spotify
