@@ -2,5 +2,5 @@
 
 require "octokit"
 
-module Github
+module GitHub
 end
