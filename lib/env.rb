@@ -11,6 +11,7 @@ class Env
     @github_secret = ENV["GITHUB_SECRET"]
     @gist_id = ENV["GIST_ID"]
     @length = ENV["LENGTH"] || 20
+    @time = ENV["TIME"] || "short_term"
   end
 
   def get_spotify
@@ -19,6 +20,7 @@ class Env
       client_secret: @spotify_client_secret,
       refresh_token: @spotify_refresh_token,
       length: @length,
+      time: @time,
     }
   end
 
