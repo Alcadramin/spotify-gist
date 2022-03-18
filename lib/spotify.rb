@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative "env.rb"
 require "faraday"
 require "faraday/net_http"
@@ -14,7 +16,7 @@ module Spotify
   @@get_token_uri = "https://accounts.spotify.com/api/token"
   @@get_tracks_uri = "https://api.spotify.com/v1/me/top/tracks"
 
-  def get_access_token()
+  def get_access_token
     puts "Spotify :: Getting access token.."
 
     conn = Faraday.new(
@@ -31,10 +33,10 @@ module Spotify
       req.body = { grant_type: "refresh_token", refresh_token: @@refresh_token }
     end
 
-    return response.body["access_token"]
+    response.body["access_token"]
   end
 
-  def get_tracks()
+  def get_tracks
     puts "Spotify :: Getting tracks.."
 
     access_token = get_access_token()
@@ -58,6 +60,6 @@ module Spotify
       req.params["time_range"] = @@time
     end
 
-    return response.body["items"]
+    response.body["items"]
   end
 end
