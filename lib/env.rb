@@ -21,8 +21,7 @@ class Env
 
   def get_spotify
     if (@spotify_client_id || '').empty? || (@spotify_client_secret || '').empty? || (@spotify_refresh_token || '').empty?
-      puts send_message("error", "Error(Spotify) :: Missing credentials..")
-      exit!
+      send_message("error", "Error(Spotify) :: Missing credentials..")
     end
 
     {
@@ -36,8 +35,7 @@ class Env
 
   def get_github
     if (@github_token || '').empty? || (@gist_id || '').empty?
-      puts send_message("error", "Error(GitHub) :: Missing credentials..")
-      exit!
+      send_message("error", "Error(GitHub) :: Missing credentials..")
     end
 
     {

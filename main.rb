@@ -8,8 +8,7 @@ include Spotify
 tracks = Spotify.get_tracks
 
 if tracks.size.zero? || tracks.empty?
-  puts send_message("error", "Error(Spotify) :: Can't find tracks..")
-  exit!
+  send_message("error", "Error(Spotify) :: Can't find tracks..")
 else
-  puts send_message("success", "Success(Spotify) :: Found tracks..")
+  send_message("success", "Success(Spotify) :: Found tracks..")
 end

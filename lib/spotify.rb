@@ -20,7 +20,7 @@ module Spotify
   @get_tracks_uri = "https://api.spotify.com/v1/me/top/tracks"
 
   def get_access_token
-    puts send_message("info", "Info(Spotify) :: Getting access token..")
+    send_message("info", "Info(Spotify) :: Getting access token..")
 
     conn = Faraday.new(
       url: @get_token_uri
@@ -40,15 +40,14 @@ module Spotify
   end
 
   def get_tracks
-    puts send_message("info", "Info(Spotify) :: Getting tracks..")
+    send_message("info", "Info(Spotify) :: Getting tracks..")
 
     access_token = get_access_token
 
     if access_token.nil? || access_token.empty?
-      puts send_message("error", "Error(Spotify) :: Access token didn't acquired..")
-      exit!
+      send_message("error", "Error(Spotify) :: Access token didn't acquired..")
     else
-      puts send_message("success", "Success(Spotify) :: Access token acquired..")
+      send_message("success", "Success(Spotify) :: Access token acquired..")
     end
 
     conn = Faraday.new(

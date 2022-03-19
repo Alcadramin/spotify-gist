@@ -6,11 +6,12 @@ module Cli
   def send_message(type, message)
     case type
     when 'error'
-      message.colorize(:red)
+      puts message.colorize(:red)
+      exit!
     when 'info'
-      message.colorize(:light_blue)
+      puts message.colorize(:light_blue)
     when 'success'
-      message.colorize(:green)
+      puts message.colorize(:green)
     else
       puts "Error(Cli) :: Wrong message type".colorize(:red)
       exit!
