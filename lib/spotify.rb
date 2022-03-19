@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 require_relative "env"
-require_relative "cli"
+require_relative "utils"
 require "faraday"
 require "faraday/net_http"
 require "json"
 require "unicode/display_width/string_ext"
 
 module Spotify
-  include Cli
+  include Utils
 
   config = Env.new
   @client_id = config.get_spotify[:client_id]

@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require_relative "cli"
+require_relative "utils"
 require "dotenv"
 Dotenv.load(
   File.expand_path("../.env", File.dirname(__FILE__))
 )
 
 class Env
-  include Cli
+  include Utils
 
   def initialize
     @spotify_client_id = ENV["SPOTIFY_CLIENT_ID"]
@@ -15,7 +15,7 @@ class Env
     @spotify_refresh_token = ENV["SPOTIFY_REFRESH_TOKEN"]
     @github_token = ENV["GITHUB_TOKEN"]
     @gist_id = ENV["GIST_ID"]
-    @file_name = ENV["FILE_NAME"]
+    @gist_name = ENV["GIST_NAME"]
     @length = ENV["LENGTH"].empty? ? 20 : ENV["LENGTH"]
     @time = ENV["TIME"].empty? ? "short_term" : ENV["TIME"]
   end
@@ -42,7 +42,7 @@ class Env
     {
       gh_token: @github_token,
       gist_id: @gist_id,
-      file_name: @file_name
+      gist_name: @gist_name
     }
   end
 end
