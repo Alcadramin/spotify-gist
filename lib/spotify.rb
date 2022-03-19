@@ -5,6 +5,7 @@ require_relative "cli"
 require "faraday"
 require "faraday/net_http"
 require "json"
+require "unicode/display_width/string_ext"
 
 module Spotify
   include Cli
@@ -87,6 +88,19 @@ module Spotify
 
     send_message("error", "Error(Spotify) :: Error while parsing tracks..") if parsed.empty?
 
-    parsed
+    parsed.map do |q|
+      {
+        artist: q[:artist].to_s[0..19],
+        name: q[:name].to_s[0..25]
+      }
+    end
+  end
+
+  def create_list
+    tracks = parse_tracks
+
+    tracks.map do |track|
+      "#{track[:name].ljust(34 + track[:name].size - track[:name].display_width)}#{track[:artist].rjust(20 + track[:artist].size - track[:artist].display_width)}"
+    end
   end
 end

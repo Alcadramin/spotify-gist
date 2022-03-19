@@ -101,6 +101,7 @@ DEPENDENCIES
   faraday
   octokit
   solargraph
+  unicode-display_width
 
 BUNDLED WITH
    2.3.9
