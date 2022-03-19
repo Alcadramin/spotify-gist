@@ -15,6 +15,7 @@ class Env
     @spotify_refresh_token = ENV["SPOTIFY_REFRESH_TOKEN"]
     @github_token = ENV["GITHUB_TOKEN"]
     @gist_id = ENV["GIST_ID"]
+    @file_name = ENV["FILE_NAME"]
     @length = ENV["LENGTH"].empty? ? 20 : ENV["LENGTH"]
     @time = ENV["TIME"].empty? ? "short_term" : ENV["TIME"]
   end
@@ -40,7 +41,8 @@ class Env
 
     {
       gh_token: @github_token,
-      gist_id: @gist_id
+      gist_id: @gist_id,
+      file_name: @file_name
     }
   end
 end
