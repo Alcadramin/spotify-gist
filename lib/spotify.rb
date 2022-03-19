@@ -44,6 +44,8 @@ module Spotify
 
     access_token = get_access_token
 
+    puts access_token
+
     if access_token.nil? || access_token.empty?
       send_message("error", "Error(Spotify) :: Access token didn't acquired..")
     else
@@ -65,5 +67,26 @@ module Spotify
     end
 
     response.body["items"]
+  end
+
+  def parse_tracks
+    tracks = get_tracks
+
+    if tracks.size.zero? || tracks.empty?
+      send_message("error", "Error(Spotify) :: Can't find tracks..")
+    else
+      send_message("success", "Success(Spotify) :: Found tracks..")
+    end
+
+    parsed = tracks.map do |track|
+      {
+        artist: track["artists"][0]["name"],
+        name: track["name"]
+      }
+    end
+
+    send_message("error", "Error(Spotify) :: Error while parsing tracks..") if parsed.empty?
+
+    parsed
   end
 end
