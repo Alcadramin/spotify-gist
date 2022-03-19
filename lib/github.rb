@@ -40,12 +40,17 @@ module GitHub
     nested_hash_value(gist, :filename)
   end
 
-  def create_gist
+  def update_gist(list)
     client = auth
     file = verify_gist
 
     begin
       send_message("info", "Info(GitHub) :: Creating gist content..")
+      client.edit_gist(@gist_id, {
+                         files: { file => { "content": list } }
+                       })
+
+      send_message("success", "Success(GitHub) :: Successfully updated gist content..")
     rescue StandardError
       send_message("error", "Error(GitHub) :: Can't update gist content..")
     end

@@ -45,8 +45,6 @@ module Spotify
 
     access_token = get_access_token
 
-    puts access_token
-
     if access_token.nil? || access_token.empty?
       send_message("error", "Error(Spotify) :: Access token didn't acquired..")
     else
@@ -99,8 +97,10 @@ module Spotify
   def create_list
     tracks = parse_tracks
 
-    tracks.map do |track|
+    list = tracks.map do |track|
       "#{track[:name].ljust(34 + track[:name].size - track[:name].display_width)}#{track[:artist].rjust(20 + track[:artist].size - track[:artist].display_width)}"
     end
+
+    list.join("\n")
   end
 end
