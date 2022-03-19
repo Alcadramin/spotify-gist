@@ -11,30 +11,30 @@ module Spotify
   include Utils
 
   config = Env.new
-  @client_id = config.get_spotify[:client_id]
-  @client_secret = config.get_spotify[:client_secret]
-  @refresh_token = config.get_spotify[:refresh_token]
-  @length = config.get_spotify[:length]
-  @time = config.get_spotify[:time]
+  @@client_id = config.get_spotify[:client_id]
+  @@client_secret = config.get_spotify[:client_secret]
+  @@refresh_token = config.get_spotify[:refresh_token]
+  @@length = config.get_spotify[:length]
+  @@time = config.get_spotify[:time]
 
-  @get_token_uri = "https://accounts.spotify.com/api/token"
-  @get_tracks_uri = "https://api.spotify.com/v1/me/top/tracks"
+  @@get_token_uri = "https://accounts.spotify.com/api/token"
+  @@get_tracks_uri = "https://api.spotify.com/v1/me/top/tracks"
 
   def get_access_token
     send_message("info", "Info(Spotify) :: Getting access token..")
 
     conn = Faraday.new(
-      url: @get_token_uri
+      url: @@get_token_uri
     ) do |builder|
       builder.response :json
       builder.use Faraday::Request::Retry
       builder.use Faraday::Request::UrlEncoded
-      builder.use Faraday::Request::BasicAuthentication, @client_id, @client_secret
+      builder.use Faraday::Request::BasicAuthentication, @@client_id, @@client_secret
       builder.adapter Faraday::Adapter::NetHttp
     end
 
     response = conn.post() do |req|
-      req.body = { grant_type: "refresh_token", refresh_token: @refresh_token }
+      req.body = { grant_type: "refresh_token", refresh_token: @@refresh_token }
     end
 
     response.body["access_token"]
@@ -52,7 +52,7 @@ module Spotify
     end
 
     conn = Faraday.new(
-      url: @get_tracks_uri
+      url: @@get_tracks_uri
     ) do |builder|
       builder.response :json
       builder.use Faraday::Request::Retry
@@ -61,8 +61,8 @@ module Spotify
     end
 
     response = conn.get() do |req|
-      req.params["limit"] = @length
-      req.params["time_range"] = @time
+      req.params["limit"] = @@length
+      req.params["time_range"] = @@time
     end
 
     response.body["items"]
