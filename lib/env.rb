@@ -13,7 +13,7 @@ class Env
     @spotify_client_id = ENV["SPOTIFY_CLIENT_ID"]
     @spotify_client_secret = ENV["SPOTIFY_CLIENT_SECRET"]
     @spotify_refresh_token = ENV["SPOTIFY_REFRESH_TOKEN"]
-    @github_token = ENV["GITHUB_TOKEN"]
+    @github_token = ENV["GH_TOKEN"]
     @gist_id = ENV["GIST_ID"]
     @gist_name = ENV["GIST_NAME"]
     @length = ENV["LENGTH"].empty? ? 20 : ENV["LENGTH"]

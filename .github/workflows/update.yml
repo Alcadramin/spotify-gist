@@ -1,0 +1,26 @@
+name: update
+
+on:
+  workflow_dispatch:
+    schedule:
+      - cron: '0 0 * * *' # 00.00 UTC/Everyday
+    push:
+      branches: main
+
+jobs:
+  updateGist:
+    runs-on: ubuntu-latest
+    environment: Production
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.1.1
+          bundler-cache: true
+      - run: bundle exec ruby main.rb
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GIST_ID: ${{ secrets.GIST_ID }}
+          SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
+          SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
