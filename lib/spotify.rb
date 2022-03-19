@@ -47,6 +47,8 @@ module Spotify
     if access_token.nil? || access_token.empty?
       puts send_message("error", "Error(Spotify) :: Access token didn't acquired..")
       exit!
+    else
+      puts send_message("success", "Success(Spotify) :: Access token acquired..")
     end
 
     conn = Faraday.new(
