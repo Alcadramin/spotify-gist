@@ -1,11 +1,14 @@
 # frozen_string_literal: true
 
 require_relative "env"
+require_relative "cli"
 require "faraday"
 require "faraday/net_http"
 require "json"
 
 module Spotify
+  include Cli
+
   config = Env.new
   @client_id = config.get_spotify[:client_id]
   @client_secret = config.get_spotify[:client_secret]
@@ -17,7 +20,7 @@ module Spotify
   @get_tracks_uri = "https://api.spotify.com/v1/me/top/tracks"
 
   def get_access_token
-    puts "Spotify :: Getting access token.."
+    puts send_message("info", "Info(Spotify) :: Getting access token..")
 
     conn = Faraday.new(
       url: @get_token_uri
@@ -37,12 +40,12 @@ module Spotify
   end
 
   def get_tracks
-    puts "Spotify :: Getting tracks.."
+    puts send_message("info", "Info(Spotify) :: Getting tracks..")
 
     access_token = get_access_token
 
     if access_token.nil? || access_token.empty?
-      puts "Spotify :: Access token didn't acquired, exiting.."
+      puts send_message("error", "Error(Spotify) :: Access token didn't acquired..")
       exit!
     end
 

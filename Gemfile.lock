@@ -6,6 +6,7 @@ GEM
     ast (2.4.2)
     backport (1.2.0)
     benchmark (0.2.0)
+    colorize (0.8.1)
     diff-lcs (1.5.0)
     dotenv (2.7.6)
     e2mmap (0.1.0)
@@ -95,6 +96,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  colorize
   dotenv
   faraday
   octokit
