@@ -1,11 +1,11 @@
-name: update
+name: Update
 
 on:
   workflow_dispatch:
-    schedule:
-      - cron: '0 0 * * *' # 00.00 UTC/Everyday
-    push:
-      branches: main
+  schedule:
+    - cron: '0 0 * * *'  # 00.00 UTC/Everyday
+  push:
+    branches: main
 
 jobs:
   updateGist:

@@ -15,7 +15,7 @@ class Env
     @spotify_refresh_token = ENV["SPOTIFY_REFRESH_TOKEN"]
     @github_token = ENV["GH_TOKEN"]
     @gist_id = ENV["GIST_ID"]
-    @gist_name = ENV["GIST_NAME"]
+    @gist_name = ENV["GIST_NAME"] || ''
     @length = (ENV["LENGTH"] || '').empty? ? 20 : ENV["LENGTH"]
     @time = (ENV["TIME"] || '').empty? ? "short_term" : ENV["TIME"]
   end
