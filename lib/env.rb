@@ -10,6 +10,7 @@ class Env
   include Utils
 
   def initialize
+    @list_format = ENV["LIST_FMT"] || ''
     @spotify_client_id = ENV["SPOTIFY_CLIENT_ID"]
     @spotify_client_secret = ENV["SPOTIFY_CLIENT_SECRET"]
     @spotify_refresh_token = ENV["SPOTIFY_REFRESH_TOKEN"]
@@ -18,6 +19,10 @@ class Env
     @gist_name = ENV["GIST_NAME"] || ''
     @length = (ENV["LENGTH"] || '').empty? ? 20 : ENV["LENGTH"]
     @time = (ENV["TIME"] || '').empty? ? "short_term" : ENV["TIME"]
+  end
+
+  def get_list_format
+    @list_format
   end
 
   def get_spotify

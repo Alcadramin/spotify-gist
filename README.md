@@ -1,16 +1,16 @@
 ## 🎶 Your top Spotify tracks in a GitHub Gist!
 
-> This project is based on [spotify-box](https://github.com/izayl/spotify-box), it uses Ruby with minor modifications instead of JavaScript.
+This project is based on [spotify-box](https://github.com/izayl/spotify-box), it uses Ruby with minor modifications instead of JavaScript.
 
 #
+
 ### Usage
 
 1. Create a new public GitHub Gist (<https://gist.github.com/>).
 2. Create a token with the `gist` scope and copy it. (<https://github.com/settings/tokens/new>).
 3. Create a Spotify Application, detail steps you can see below.
 
-#
-### <details><summary>Get Spotify Refresh Token</summary>
+<details><summary><strong>Get Spotify Refresh Token</strong></summary>
 <p>
 
 ### 1. Create new Spotify Application
@@ -42,11 +42,11 @@ curl -d client_id=$CLIENT_ID -d client_secret=$CLIENT_SECRET -d grant_type=autho
 
 ```json
 {
-    "access_token": "BQBi-jz.....yCVzcl",
-    "token_type": "Bearer",
-    "expires_in": 3600,
-    "refresh_token": "AQCBvdy70gtKvnrVIxe...",
-    "scope": "user-read-currently-playing user-top-read"
+  "access_token": "BQBi-jz.....yCVzcl",
+  "token_type": "Bearer",
+  "expires_in": 3600,
+  "refresh_token": "AQCBvdy70gtKvnrVIxe...",
+  "scope": "user-read-currently-playing user-top-read"
 }
 ```
 
@@ -57,7 +57,7 @@ curl -d client_id=$CLIENT_ID -d client_secret=$CLIENT_SECRET -d grant_type=autho
 
 #
 
-If you are going to use it with GitHub Actions please do not skip [Environment Variables](README.md#-environment-variables) section.
+If you are going to use it with GitHub Actions please do not skip [Environment Variables](#environment-variables) section.
 
 ## Environment Variables
 

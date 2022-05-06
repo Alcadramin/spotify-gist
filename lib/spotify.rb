@@ -16,6 +16,7 @@ module Spotify
   @@refresh_token = config.get_spotify[:refresh_token]
   @@length = config.get_spotify[:length]
   @@time = config.get_spotify[:time]
+  @@list_format = config.get_list_format
 
   @@get_token_uri = "https://accounts.spotify.com/api/token"
   @@get_tracks_uri = "https://api.spotify.com/v1/me/top/tracks"
@@ -24,7 +25,7 @@ module Spotify
     send_message("info", "Info(Spotify) :: Getting access token..")
 
     conn = Faraday.new(
-      url: @@get_token_uri
+      url: @@get_token_uri,
     ) do |builder|
       builder.response :json
       builder.use Faraday::Request::Retry
@@ -52,7 +53,7 @@ module Spotify
     end
 
     conn = Faraday.new(
-      url: @@get_tracks_uri
+      url: @@get_tracks_uri,
     ) do |builder|
       builder.response :json
       builder.use Faraday::Request::Retry
@@ -80,7 +81,7 @@ module Spotify
     parsed = tracks.map do |track|
       {
         artist: track["artists"][0]["name"],
-        name: track["name"]
+        name: track["name"],
       }
     end
 
@@ -89,7 +90,7 @@ module Spotify
     parsed.map do |q|
       {
         artist: q[:artist].to_s[0..19],
-        name: q[:name].to_s[0..25]
+        name: q[:name].to_s[0..25],
       }
     end
   end
@@ -97,8 +98,28 @@ module Spotify
   def create_list
     tracks = parse_tracks
 
-    list = tracks.map do |track|
-      "#{track[:name].ljust(34 + track[:name].size - track[:name].display_width)}#{track[:artist].rjust(20 + track[:artist].size - track[:artist].display_width)}"
+    send_message("info", "Info(Spotify) :: Using list format #{@@list_format}.")
+
+    if @@list_format == 1
+      list = tracks.map do |track|
+        "#{track[:name].ljust(34 + track[:name].size - track[:name].display_width)}#{track[:artist].rjust(20 + track[:artist].size - track[:artist].display_width)}"
+      end
+    elsif @@list_format == 2
+      list = tracks.map do |track|
+        "「#{track[:name]} — #{track[:artist]}」"
+      end
+    elsif @@list_format == 3
+      list = tracks.map do |track|
+        "【#{track[:name]} — #{track[:artist]}】"
+      end
+    elsif @@list_format == 4
+      list = tracks.map do |track|
+        "『#{track[:name]} — #{track[:artist]}』"
+      end
+    else
+      list = tracks.map do |track|
+        "#{track[:name]} — #{track[:artist]}"
+      end
     end
 
     list.join("\n")
