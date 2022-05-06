@@ -19,6 +19,7 @@ jobs:
           bundler-cache: true
       - run: bundle exec ruby main.rb
         env:
+          LIST_FMT: ${{ secrets.LIST_FMT }}
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           GIST_ID: ${{ secrets.GIST_ID }}
           SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
