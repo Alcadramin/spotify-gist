@@ -74,4 +74,4 @@ If you are going to use it with GitHub Actions please do not skip [Environment V
 
 ## License
 
-This repository is licensed under the [GPLv3 License](LICENSE.md).
+This repository is licensed under the [Apache License 2.0](LICENSE.md).
