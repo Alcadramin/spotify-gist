@@ -1,3 +1,12 @@
+<p align="center">
+  <img src="https://i.imgur.com/LQ7OSiE.png" alt="Gist" />
+</p>
+<p align="center">
+  <a href="https://github.com/Alcadramin/spotify-gist/actions/workflows/update.yml" target="_blank">
+    <img src="https://github.com/Alcadramin/spotify-gist/actions/workflows/update.yml/badge.svg" alt="Badge" />
+  </a>
+</p>
+
 ## 🎶 Your top Spotify tracks in a GitHub Gist!
 
 This project is based on [spotify-box](https://github.com/izayl/spotify-box), it uses Ruby with minor modifications instead of JavaScript.
