@@ -100,19 +100,19 @@ module Spotify
 
     send_message("info", "Info(Spotify) :: Using list format #{@@list_format}.")
 
-    if @@list_format == 1
+    if @@list_format == '1'
       list = tracks.map do |track|
         "#{track[:name].ljust(34 + track[:name].size - track[:name].display_width)}#{track[:artist].rjust(20 + track[:artist].size - track[:artist].display_width)}"
       end
-    elsif @@list_format == 2
+    elsif @@list_format == '2'
       list = tracks.map do |track|
         "「#{track[:name]} — #{track[:artist]}」"
       end
-    elsif @@list_format == 3
+    elsif @@list_format == '3'
       list = tracks.map do |track|
         "【#{track[:name]} — #{track[:artist]}】"
       end
-    elsif @@list_format == 4
+    elsif @@list_format == '4'
       list = tracks.map do |track|
         "『#{track[:name]} — #{track[:artist]}』"
       end

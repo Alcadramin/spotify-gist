@@ -22,7 +22,7 @@ class Env
   end
 
   def get_list_format
-    @list_format
+    @list_format.to_s
   end
 
   def get_spotify
